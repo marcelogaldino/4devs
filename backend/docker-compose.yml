@@ -1,0 +1,30 @@
+version: "3.7"
+
+services:
+  database_4devs:
+    image: postgres
+    container_name: database_4devs
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=4devs
+      - POSTGRES_DB=4devs
+    volumes:
+      - pgdata:/data/postgres
+  4devsapp:
+    build: .
+    container_name: 4devs
+    ports:
+      - 3333:3333
+    volumes:
+      - .:/usr/app
+    links:
+      - database_4devs
+    depends_on:
+      - database_4devs
+
+volumes:
+  pgdata:
+    driver: local
