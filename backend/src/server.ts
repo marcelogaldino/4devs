@@ -1,6 +1,7 @@
 import express from 'express';
 
 import "./database";
+import "./shared/container";
 
 import { routes } from './routes'
 

@@ -1,8 +1,8 @@
 import { Repository, getRepository } from "typeorm";
 import { Devs } from "../../entities/Devs";
-import { IDevRepository, ICreateDevDTO } from "../IDevRepository";
+import { IDevsRepository, ICreateDevDTO } from "../IDevsRepository";
 
-class DevsRepository implements IDevRepository {
+class DevsRepository implements IDevsRepository {
   private repository: Repository<Devs>
 
   constructor() {
@@ -26,8 +26,28 @@ class DevsRepository implements IDevRepository {
     return findDev
   }
 
-  async update(id: string): Promise<Devs> { }
-  async delete(id: string): Promise<Devs> { }
+  async update(id: string, { data }: ICreateDevDTO): Promise<Devs> {
+    const { nome, idade, sexo, hobby, datanascimento } = data
+
+    const findDev = await this.repository.findOne({ id })
+
+    Object.assign(findDev, {
+      nome,
+      idade,
+      sexo,
+      hobby,
+      datanascimento
+    })
+
+    return await this.repository.save(findDev)
+  }
+  async delete(id: string): Promise<void> {
+    const findDev = await this.repository.findOne({ id })
+
+    await this.repository.remove(findDev)
+
+    return
+  }
 }
 
 export { DevsRepository }

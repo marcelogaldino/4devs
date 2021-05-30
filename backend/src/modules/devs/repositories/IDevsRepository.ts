@@ -12,12 +12,12 @@ interface ICreateDevDTO {
   data: IDataDevDTO;
 }
 
-interface IDevRepository {
-  create(data: ICreateDevDTO): Promise<void>
+interface IDevsRepository {
+  create({ data }: ICreateDevDTO): Promise<void>
   list(): Promise<Devs[]>
   findOne(id: string): Promise<Devs>
-  update(id: string): Promise<Devs>
-  delete(id: string): Promise<Devs>
+  update(id: string, { data }: ICreateDevDTO): Promise<Devs>
+  delete(id: string): Promise<void>
 }
 
-export { IDevRepository, ICreateDevDTO }
+export { IDevsRepository, ICreateDevDTO }

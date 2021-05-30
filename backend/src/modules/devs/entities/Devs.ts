@@ -9,7 +9,7 @@ class Devs {
   @Column()
   nome: string;
 
-  @Column()
+  @Column({ length: 1 })
   sexo: string;
 
   @Column()
