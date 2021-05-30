@@ -21,6 +21,16 @@ class DevsRepository implements IDevsRepository {
     return allDevs
   }
 
+  async paginatedList(start: number, limit: number): Promise<Devs[]> {
+    const paginatedDevs = await this.repository
+      .createQueryBuilder("devs")
+      .skip(start)
+      .take(limit)
+      .getMany()
+
+    return paginatedDevs
+  }
+
   async findOne(id: string): Promise<Devs> {
     const findDev = await this.repository.findOne({ id })
     return findDev

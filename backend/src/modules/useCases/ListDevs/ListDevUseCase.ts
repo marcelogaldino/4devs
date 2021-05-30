@@ -8,10 +8,17 @@ class ListDevUseCase {
     @inject("DevsRepository")
     private devsRepository: IDevsRepository
   ) { }
+
   async execute(): Promise<Devs[]> {
     const allDevs = await this.devsRepository.list()
 
     return allDevs
+  }
+
+  async executePagination(start: number, limit: number): Promise<Devs[]> {
+    const allDevsPaginated = await this.devsRepository.paginatedList(start, limit)
+
+    return allDevsPaginated
   }
 }
 

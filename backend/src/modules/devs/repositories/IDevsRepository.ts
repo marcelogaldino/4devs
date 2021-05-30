@@ -15,6 +15,7 @@ interface ICreateDevDTO {
 interface IDevsRepository {
   create({ data }: ICreateDevDTO): Promise<void>
   list(): Promise<Devs[]>
+  paginatedList(start: number, limit: number): Promise<Devs[]>
   findOne(id: string): Promise<Devs>
   update(id: string, { data }: ICreateDevDTO): Promise<Devs>
   delete(id: string): Promise<void>
