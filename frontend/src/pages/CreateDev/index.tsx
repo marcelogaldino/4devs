@@ -26,7 +26,7 @@ const CreateDev: React.FC = () => {
       formRef.current?.setErrors({});
 
       const schema = Yup.object().shape({
-        nome: Yup.string(),
+        nome: Yup.string().required().typeError('Informe um nome'),
         idade: Yup.number().min(1).max(150).typeError('Idade deve estar entre 1 e 150'),
         hobby: Yup.string().max(255).typeError('Máximo de 255 caracteres'),
         sexo: Yup.string().max(1),
@@ -44,7 +44,7 @@ const CreateDev: React.FC = () => {
 
       formRef.current?.setErrors(errors);
     }
-  }, []);
+  }, [history]);
 
   return (
     <Container>

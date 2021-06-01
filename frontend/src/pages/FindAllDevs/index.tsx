@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FiHome } from 'react-icons/fi';
+
 import api from '../../services/api';
 
-import { Container, Card, Cards } from './styles';
+import {
+  ButtonBack, Container, Card, Cards,
+} from './styles';
 
 interface IDataDevs {
   id: string;
@@ -27,31 +31,35 @@ const FindAllDevs: React.FC = () => {
 
   return (
     <>
+      <ButtonBack>
+        <Link to="/">
+          <FiHome size={20} />
+          Voltar para a Home
+        </Link>
+      </ButtonBack>
       <Container>
-        <Link to="/">Home</Link>
-
         <Cards>
           {devs.map((dev) => (
-            <Link to={`/edit/${dev.id}`}>
-              <Card key={dev.id}>
+            <Link key={dev.id} to={`/edit/${dev.id}`}>
+              <Card>
                 <ul>
                   <li>
-                    Nome
+                    <strong>Nome</strong>
                     {' '}
                     {dev.nome}
                   </li>
                   <li>
-                    Idade
+                    <strong>Idade</strong>
                     {' '}
                     {dev.idade}
                   </li>
                   <li>
-                    Sexo
+                    <strong>Sexo</strong>
                     {' '}
                     {dev.sexo}
                   </li>
                   <li>
-                    Hobby
+                    <strong>Hobby</strong>
                     {' '}
                     {dev.hobby}
                   </li>

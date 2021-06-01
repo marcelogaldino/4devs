@@ -1,7 +1,5 @@
 /* eslint-disable consistent-return */
 export default function formatDate(date: Date | undefined): string | void {
-  console.log(date);
-
   if (date !== undefined) {
     const dateTime = new Date(date);
 

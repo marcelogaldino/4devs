@@ -1,9 +1,11 @@
+import { shade } from 'polished';
 import styled from 'styled-components';
 
 export const Container = styled.div`
   height: 100vh;
 
   display: flex;
+  flex-direction: column;
   flex: 1;
   justify-content: center;
   align-items: center;
@@ -26,6 +28,20 @@ export const Content = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+export const Header = styled.div`
+  display: flex;
+
+  a {
+    margin-right: 22px;
+    text-decoration: none;
+    color: red;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    margin-top: 4px;
+  }
 `;
 
 export const Checkbox = styled.div`
@@ -52,5 +68,28 @@ export const InputDate = styled.div`
 
   label {
     padding: 16px;
+  }
+`;
+
+export const Buttons = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  > button {
+    margin-right: 6px;
+  }
+`;
+
+export const FormDelete = styled.div`
+    width: 30%;
+  button {
+    background: #c53030;
+
+    transition: background 0.2s;
+
+    &:hover {
+      background: ${shade(0.2, '#c53030')};
+    }
   }
 `;
