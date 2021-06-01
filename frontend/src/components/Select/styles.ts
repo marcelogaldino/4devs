@@ -9,9 +9,8 @@ export const Container = styled.div`
 
   display: flex;
   align-items: center;
-  flex-direction: row;
 
-  input {
+  select {
     flex: 1;
     margin-right: 4px;
     border: 0;

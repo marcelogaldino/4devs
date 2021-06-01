@@ -1,13 +1,15 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
 import GlobaStyle from './styles/global';
 
-// import Home from './pages/HomePage';
-import CreateDev from './pages/CreateDev';
+import Routes from './routes';
 
 const App: React.FC = () => (
   <>
-    <CreateDev />
+    <BrowserRouter>
+      <Routes />
+    </BrowserRouter>
     <GlobaStyle />
   </>
 );

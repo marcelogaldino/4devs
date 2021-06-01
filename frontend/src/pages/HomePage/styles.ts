@@ -21,7 +21,9 @@ export const Content = styled.div`
     margin-bottom: 64px;
   }
 
-
+  a {
+    width: 100%;
+  }
 `;
 
 export const Background = styled.div`

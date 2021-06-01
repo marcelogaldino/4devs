@@ -9,14 +9,11 @@ export const Container = styled.button`
   background: #007CFF;
   color: #FFF;
   font-weight: 500;
+  margin-top: 32px;
 
   transition: background 0.2s;
 
   &:hover {
     background: ${shade(0.2, '#007CFF')};
-  }
-
-  & + button {
-    margin-top: 12px;
   }
 `;

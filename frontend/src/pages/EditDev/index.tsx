@@ -1,12 +1,15 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useCallback, useRef } from 'react';
+import React, {
+  useCallback, useEffect, useRef, useState,
+} from 'react';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
-import { useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import * as Yup from 'yup';
 
 import api from '../../services/api';
 import getValidationErrors from '../../utils/getValidationErrors';
+import formatDate from '../../utils/formatDate';
 
 import {
   Container, Content, SelectElement, InputDate,
@@ -16,8 +19,18 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Select from '../../components/Select';
 
-const CreateDev: React.FC = () => {
-  const history = useHistory();
+interface IDataDevs {
+  id: string;
+  nome: string;
+  idade: number;
+  hobby: string;
+  sexo: string;
+  datanascimento: Date;
+}
+
+const EditDev: React.FC = () => {
+  const location = useLocation();
+  const [dev, setDev] = useState<IDataDevs>();
   const formRef = useRef<FormHandles>(null);
 
   const handleSubmit = useCallback(async (data: object) => {
@@ -36,8 +49,7 @@ const CreateDev: React.FC = () => {
         abortEarly: false,
       });
 
-      await api.post('/devs', data);
-      history.push('/find');
+      await api.put('/devs', data);
     } catch (error) {
       const errors = getValidationErrors(error);
 
@@ -45,10 +57,32 @@ const CreateDev: React.FC = () => {
     }
   }, []);
 
+  useEffect(() => {
+    async function fetchDev() {
+      const id = location.pathname.replace('/edit/', '');
+
+      const response = await api.get(`/devs/${id}`);
+
+      setDev(response.data);
+    }
+
+    fetchDev();
+  }, [location.pathname]);
+
+  const initialData = {
+    nome: dev?.nome,
+    idade: dev?.idade,
+    sexo: dev?.sexo,
+    hobby: dev?.hobby,
+    datanascimento: formatDate(dev?.datanascimento),
+  };
+
+  console.log(initialData.datanascimento);
+
   return (
     <Container>
       <Content>
-        <Form ref={formRef} onSubmit={handleSubmit}>
+        <Form initialData={initialData} ref={formRef} onSubmit={handleSubmit}>
           <h2>Informações Cadastrais</h2>
           <Input name="nome" type="text" placeholder="Nome Completo" />
           <Input name="idade" type="number" placeholder="Idade" />
@@ -73,4 +107,4 @@ const CreateDev: React.FC = () => {
   );
 };
 
-export default CreateDev;
+export default EditDev;

@@ -1,14 +1,14 @@
-import React, { InputHTMLAttributes, useEffect, useRef } from 'react';
+import React, { SelectHTMLAttributes, useEffect, useRef } from 'react';
 import { useField } from '@unform/core';
 
 import { Container } from './styles';
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement>{
+interface Selectrops extends SelectHTMLAttributes<HTMLSelectElement>{
   name: string;
 }
 
-const Input: React.FC<InputProps> = ({ name, children, ...rest }) => {
-  const inputRef = useRef(null);
+const Input: React.FC<Selectrops> = ({ name, children, ...rest }) => {
+  const selectRef = useRef(null);
   const {
     fieldName, defaultValue, error, registerField,
   } = useField(name);
@@ -16,16 +16,16 @@ const Input: React.FC<InputProps> = ({ name, children, ...rest }) => {
   useEffect(() => {
     registerField({
       name: fieldName,
-      ref: inputRef.current,
+      ref: selectRef.current,
       path: 'value',
     });
   }, [fieldName, registerField]);
 
   return (
     <Container>
-      <input defaultValue={defaultValue} ref={inputRef} {...rest} />
-      {children}
-      {error}
+      <select defaultValue={defaultValue} ref={selectRef} {...rest}>
+        {children}
+      </select>
     </Container>
   );
 };
