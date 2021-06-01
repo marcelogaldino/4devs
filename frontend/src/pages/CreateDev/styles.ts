@@ -18,14 +18,30 @@ export const Content = styled.div`
   border-radius: 12px;
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   h2 {
     text-align: center;
     margin-bottom: 18px;
   }
 
+
+`;
+
+export const Header = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
+
+  a {
+    margin-right: 22px;
+    text-decoration: none;
+    color: red;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    margin-top: 4px;
+  }
 `;
 
 export const Checkbox = styled.div`
