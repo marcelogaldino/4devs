@@ -82,7 +82,7 @@ export const Buttons = styled.div`
 `;
 
 export const FormDelete = styled.div`
-    width: 30%;
+    width: 20%;
   button {
     background: #c53030;
 
