@@ -96,6 +96,8 @@ $ cd ..
 $ cd backend
 # Instale as dependências
 $ yarn
+# Executando os testes unitários da nossa aplicação
+$ yarn jest
 # Subindo os containers docker da nossa aplicação
 $ docker-compose up -d
 # Verificando os nossos containers que estão rodando
