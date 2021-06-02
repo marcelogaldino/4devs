@@ -70,7 +70,7 @@ Abra o terminal como administrador e clone o repositório:
 
 ```bash
 # Clone o repositório
-$ git clone https://github.com/marcelogaldino/4devs
+$ git clone https://github.com/marcelogaldino/4devs.git
 ```
 
 ## Rodando o frontend da aplicação
